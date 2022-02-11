@@ -1,26 +1,10 @@
 package com.oceanbrasil.jornada_android_fev22_jetpack_arquitetura.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.oceanbrasil.jornada_android_fev22_jetpack_arquitetura.model.domain.Personagem
-import java.util.*
-import kotlin.concurrent.timerTask
+import com.oceanbrasil.jornada_android_fev22_jetpack_arquitetura.model.repository.PersonagensRepository
 
 class PersonagensViewModel : ViewModel() {
-    val personagens = MutableLiveData<List<Personagem>>()
+    private val personagensRepository = PersonagensRepository()
 
-    init {
-        val timer = Timer()
-
-        timer.schedule(
-            timerTask {
-                // Simulando uma requisição na web que leva um tempo para acontecer
-
-                val harryPotter = Personagem("Harry Potter", "https://hp-api.herokuapp.com/images/harry.jpg")
-                val hermione = Personagem("Hermione Granger", "https://hp-api.herokuapp.com/images/hermione.jpeg")
-
-                personagens.postValue(listOf(harryPotter, hermione))
-            }, 2000
-        )
-    }
+    val personagens = personagensRepository.personagens
 }
