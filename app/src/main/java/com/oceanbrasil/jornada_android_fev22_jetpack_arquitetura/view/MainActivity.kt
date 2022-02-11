@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.oceanbrasil.jornada_android_fev22_jetpack_arquitetura.R
 import com.oceanbrasil.jornada_android_fev22_jetpack_arquitetura.viewmodel.PersonagensViewModel
 
@@ -16,12 +18,9 @@ class MainActivity : AppCompatActivity() {
 
         val personagens = personagensViewModel.personagens
 
-        // Exemplo de atualização
-        val tvPersonagens = findViewById<TextView>(R.id.tvPersonagens)
-
-        tvPersonagens.text = ""
-        personagens.forEach {
-            tvPersonagens.append(it.nome + "\n")
-        }
+        // Inicialização da RecyclerView
+        val rvPersonagens = findViewById<RecyclerView>(R.id.rvPersonagens)
+        rvPersonagens.layoutManager = LinearLayoutManager(this)
+        rvPersonagens.adapter = PersonagensAdapter(personagens)
     }
 }
