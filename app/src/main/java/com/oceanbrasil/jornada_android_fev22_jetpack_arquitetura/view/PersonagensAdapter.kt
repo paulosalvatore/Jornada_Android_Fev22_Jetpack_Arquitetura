@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.oceanbrasil.jornada_android_fev22_jetpack_arquitetura.R
+import com.oceanbrasil.jornada_android_fev22_jetpack_arquitetura.model.domain.Personagem
 
 class PersonagensAdapter(val itens: List<Personagem>) : RecyclerView.Adapter<PersonagensAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -15,14 +17,14 @@ class PersonagensAdapter(val itens: List<Personagem>) : RecyclerView.Adapter<Per
             val ivImagem = findViewById<ImageView>(R.id.ivImagem)
 
             tvNome.text = item.nome
-            Glide.with(this).load(item.imagemUrl).into(ivImagem)
+            Glide.with(this).load(item.imagem).into(ivImagem)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
 
-        val view = layoutInflater.inflate(R.layout.pokemon_item, parent, false)
+        val view = layoutInflater.inflate(R.layout.personagem_item, parent, false)
 
         return ViewHolder(view)
     }
